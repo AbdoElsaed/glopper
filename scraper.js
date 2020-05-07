@@ -1,15 +1,4 @@
 const puppeteer = require('puppeteer');
-// const admin = require('firebase-admin');
-// const serviceAccount = require('./serviceAccountKey.json');
-
-// //initialize admin SDK using serviceAcountKey
-// admin.initializeApp({
-//     credential: admin.credential.cert(serviceAccount),
-//     databaseURL: "https://glopper-f830f.firebaseio.com"
-// });
-
-// const db = admin.firestore();
-// const realtimeDB = admin.database();
 
 const gvScraper = async (pageURL, location) => {
     let news = [];
@@ -56,19 +45,8 @@ const gvScraper = async (pageURL, location) => {
                 imgUrl: imgUrl,
                 location
             })
-
         }
         
-
-
-        // const egyptRef = realtimeDB.ref('news/egypt');
-        // console.log(news);
-        // for(let i=0; i<news.length; i++){
-        //     db.collection('egypt').doc(`${i}`).set(news[i]);
-        //     egyptRef.child(`${i}`).set(news[i]);
-        // }
-
-
         await browser.close();
     }
     catch (err) {

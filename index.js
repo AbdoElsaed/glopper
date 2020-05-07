@@ -2,15 +2,6 @@ const { gvLinks } = require('./siteLinks');
 const { saveNews } = require('./saveData');
 const { gvScraper } = require('./scraper');
 
-// scrape global voices website and save to firebase
-// for(link of gvLinks){
-//     gvScraper(link.pageURL, link.location)
-//         .then(news => {
-//             saveNews(news);
-//         })
-//         .catch(console.error);
-// }
-
 
 (async () => {
     try {
