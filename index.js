@@ -6,7 +6,7 @@ const { gvScraper } = require('./scraper');
 (async () => {
     try {
         for(link of gvLinks){          
-            const news = await gvScraper(link.pageURL, link.location);
+            const news = await gvScraper(link.pageURL, link.location, link.category);
             await saveNews(news);
         }
     } catch (err) {
