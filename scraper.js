@@ -1,6 +1,6 @@
 const puppeteer = require('puppeteer');
 
-const gvScraper = async (pageURL, location) => {
+const gvScraper = async (pageURL, location='general', category='general') => {
     let news = [];
     try {
         
@@ -39,11 +39,13 @@ const gvScraper = async (pageURL, location) => {
 
             news.push({
                 header: newsHeader[i],
-                category: newsCategory[i]?newsCategory[i]:'general',
+                tag: newsCategory[i],
                 summary: newsSummary[i],
                 contentTexts: texts,
                 imgUrl: imgUrl,
-                location
+                views: 0,
+                location,
+                category
             })
         }
         
