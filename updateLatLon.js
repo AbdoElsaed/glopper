@@ -23,7 +23,6 @@ const updatalatLon = async url => {
         keys.map((item, i) => {
             newsRef.child(`${keys[i]}`).on('value', async snapshot => {
                 if(snapshot.val().location !== 'general'){
-
                     let {latitude, longitude, countryCode} = await getLatLonfromName(snapshot.val().location);
                     newsRef.child(`${keys[i]}`).update({latitude, longitude, countryCode});
                 }
