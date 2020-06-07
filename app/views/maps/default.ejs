@@ -9,6 +9,7 @@
         height: 600px;
         position: relative;
         margin: 0 auto 20px;
+ 
     }
     #map {
         border-radius: 50%;
@@ -17,7 +18,7 @@
         bottom: 0;
         width: 100%;
         padding-top: 50px;
-        box-shadow: 5px 5px 10px #DDD, -5px 5px 10px #DDD 
+        box-shadow: 5px 5px 10px #DDD, -5px 5px 10px #DDD;
     }
     div.mapboxgl-ctrl-geocoder.mapboxgl-ctrl{
         margin-right: 170px;
@@ -66,10 +67,44 @@ Home
         zoom: 0
     });
 
+
+    map.on('click',(evt) => {
+        console.log(evt.lngLat);
+        findThisLocation(evt.lngLat);
+    })
+
     map.addControl(
         new MapboxGeocoder({
             accessToken: mapboxgl.accessToken,
             mapboxgl: mapboxgl
         })
     );
+
+    async function findThisLocation(latlon){
+        let lat = latlon.lat;
+        let lng = latlon.lng;
+        let countryName = '';
+        let cityName = '';
+        let apikey = 'LMZ6R4ki2QL4pqDAkouz_nc5lnKBmG1WRRBF0BouJlA';
+        let res = await fetch(`https://reverse.geocoder.ls.hereapi.com/6.2/reversegeocode.json?prox=${lat}%2C${lng}%2C250&mode=retrieveAddresses&maxresults=1&gen=9&apiKey=${apikey}&language=en`);
+        let json = await res.json();
+        if(json.Response.View[0].Result[0].Location.Address.AdditionalData[0].value){
+            countryName = json.Response.View[0].Result[0].Location.Address.AdditionalData[0].value;
+            window.location.href=`/news/local?country=${countryName}`
+        }
+        if(json.Response.View[0].Result[0].Location.Address.AdditionalData[1].value){
+            cityName = json.Response.View[0].Result[0].Location.Address.AdditionalData[1].value;
+        }
+
+
+    }
+
+</script>
+
+
+<script>
+
+
+    
+
 </script>

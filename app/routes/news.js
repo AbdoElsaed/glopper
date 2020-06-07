@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+
 const { getRecentnews } = require('../services/getNewsService');
 const { filterRecentNews } = require('../services/getNewsService');
 const { getSingleNew } = require('../services/getNewsService');
@@ -53,6 +54,7 @@ router.get('/recent/filter', async (req, res) => {
         console.log(err);
     }
 });
+
 
 
 module.exports = router;
