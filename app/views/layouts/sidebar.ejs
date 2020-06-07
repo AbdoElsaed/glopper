@@ -1,0 +1,124 @@
+<style>
+    #logo-text{
+        color: rgb(19, 139, 209);
+        font-size: 30px;
+        font-weight: 500;
+        margin-left: 50px;
+        font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        text-shadow: 1px 3px 5px rgb(14, 108, 196);
+        text-transform: uppercase;
+        letter-spacing: 0;
+    }
+
+
+</style>
+
+
+<!-- Page Sidebar Start-->
+<div class="page-sidebar">
+    <div class="main-header-left d-none d-lg-block">
+        <div class="logo-wrapper"><a href="/"><span id="logo-text">Glopper</span></a></div>
+    </div>
+    <div class="sidebar custom-scrollbar">
+        <div class="sidebar-user text-center">
+            <div><img class="img-60 rounded-circle" src="<%= global.url %>assets/images/user/1.jpg" alt="#">
+                <div class="profile-edit"><a href="edit-profile.html" target="_blank"><i data-feather="edit"></i></a></div>
+            </div>
+            <h6 class="mt-3 f-14">User Name</h6>
+            <p>general manager.</p>
+        </div>
+        <ul class="sidebar-menu">
+            <li><a class="sidebar-header" href="/"><i data-feather="home"></i><span> Map</span></a></li>
+            <li><a class="sidebar-header" href="/news/recent"><i data-feather="zap"></i><span> Recent News</span></a></li>
+            <li><a onclick="goToLocalNews()" id="localnewsLink" class="sidebar-header" href="#"><i data-feather="map-pin"></i><span> Local News</span></a></li>
+            <li><a class="sidebar-header" href="<%= global.url %>maintenance" target="_blank"><i data-feather="bookmark"></i><span> Saved News</span></a></li>
+        </ul>
+    </div>
+</div>
+<!-- Page Sidebar Ends-->
+<!-- Right sidebar Start-->
+<div class="right-sidebar" id="right_side_bar">
+    <div>
+        <div class="container p-0">
+            <div class="modal-header p-l-20 p-r-20">
+                <div class="col-sm-8 p-0">
+                    <h6 class="modal-title font-weight-bold">FRIEND LIST</h6>
+                </div>
+                <div class="col-sm-4 text-right p-0"><i class="mr-2" data-feather="settings"></i></div>
+            </div>
+        </div>
+        <div class="friend-list-search mt-0">
+            <input type="text" placeholder="search friend"><i class="fa fa-search"></i>
+        </div>
+        <div class="p-l-30 p-r-30">
+            <div class="chat-box">
+                <div class="people-list friend-list">
+                    <ul class="list">
+                        <li class="clearfix"><img class="rounded-circle user-image" src="<%= global.url %>assets/images/user/1.jpg" alt="">
+                            <div class="status-circle online"></div>
+                            <div class="about">
+                                <div class="name">Vincent Porter</div>
+                                <div class="status"> Online</div>
+                            </div>
+                        </li>
+                        <li class="clearfix"><img class="rounded-circle user-image" src="<%= global.url %>assets/images/user/2.png" alt="">
+                            <div class="status-circle away"></div>
+                            <div class="about">
+                                <div class="name">Ain Chavez</div>
+                                <div class="status"> 28 minutes ago</div>
+                            </div>
+                        </li>
+                        <li class="clearfix"><img class="rounded-circle user-image" src="<%= global.url %>assets/images/user/8.jpg" alt="">
+                            <div class="status-circle online"></div>
+                            <div class="about">
+                                <div class="name">Kori Thomas</div>
+                                <div class="status"> Online</div>
+                            </div>
+                        </li>
+                        <li class="clearfix"><img class="rounded-circle user-image" src="<%= global.url %>assets/images/user/4.jpg" alt="">
+                            <div class="status-circle online"></div>
+                            <div class="about">
+                                <div class="name">Erica Hughes</div>
+                                <div class="status"> Online</div>
+                            </div>
+                        </li>
+                        <li class="clearfix"><img class="rounded-circle user-image" src="<%= global.url %>assets/images/user/5.jpg" alt="">
+                            <div class="status-circle offline"></div>
+                            <div class="about">
+                                <div class="name">Ginger Johnston</div>
+                                <div class="status"> 2 minutes ago</div>
+                            </div>
+                        </li>
+                        <li class="clearfix"><img class="rounded-circle user-image" src="<%= global.url %>assets/images/user/6.jpg" alt="">
+                            <div class="status-circle away"></div>
+                            <div class="about">
+                                <div class="name">Prasanth Anand</div>
+                                <div class="status"> 2 hour ago</div>
+                            </div>
+                        </li>
+                        <li class="clearfix"><img class="rounded-circle user-image" src="<%= global.url %>assets/images/user/7.jpg" alt="">
+                            <div class="status-circle online"></div>
+                            <div class="about">
+                                <div class="name">Hileri Jecno</div>
+                                <div class="status"> Online</div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Right sidebar Ends-->
+
+
+
+
+<script>
+    async function goToLocalNews(){
+        let res = await fetch('http://ip-api.com/json');
+        let data = await res.json();
+        let country = data.country;
+        window.location.href=`/news/local?country=${country}`
+    }
+</script>

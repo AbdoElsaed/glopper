@@ -1,0 +1,75 @@
+<link rel="stylesheet" type="text/css" href="<%= global.url %>assets/css/chartist.css">
+<link rel="stylesheet" type="text/css" href="<%= global.url %>assets/css/prism.css">
+<link href="https://api.mapbox.com/mapbox-gl-js/v1.10.1/mapbox-gl.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.css" type="text/css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css">
+<style>
+    .map-container{
+        width: 600px;
+        height: 600px;
+        position: relative;
+        margin: 0 auto 20px;
+    }
+    #map {
+        border-radius: 50%;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+        padding-top: 50px;
+        box-shadow: 5px 5px 10px #DDD, -5px 5px 10px #DDD 
+    }
+    div.mapboxgl-ctrl-geocoder.mapboxgl-ctrl{
+        margin-right: 170px;
+        margin-top: 40px;
+    }
+</style>
+
+<%- contentFor('title') %>
+<%= title %>
+
+<%- contentFor('breadcrumb_title')%>
+Home
+
+<%- contentFor('breadcrumb_item') %>
+<li class="breadcrumb-item">Glopper</li>
+<li class="breadcrumb-item active">Map</li>
+
+<%- contentFor('body') %>
+
+<!-- Container-fluid starts-->
+<div class="container-fluid">
+    <div class="map-container">
+        <div id="map" class="animate__animated animate__bounceInDown"></div>
+    </div>
+</div>
+<!-- Container-fluid Ends-->
+
+
+<script src="https://api.mapbox.com/mapbox-gl-js/v1.10.1/mapbox-gl.js"></script>
+<script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.min.js"></script>
+<!-- Promise polyfill script required to use Mapbox GL Geocoder in IE 11 -->
+<script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
+
+<script src="<%= global.url %>assets/js/notify/bootstrap-notify.min.js"></script>
+<script src="<%= global.url %>assets/js/notify/index.js"></script>
+<script>
+    // TO MAKE THE MAP APPEAR YOU MUST
+    // ADD YOUR ACCESS TOKEN FROM
+    // https://account.mapbox.com
+    mapboxgl.accessToken = 'pk.eyJ1IjoiYXBkb2Vsc2FlZCIsImEiOiJja2IxZWE3NHEwMTlqMnFzNXI5ZGFkc3RvIn0.Ltca2MhPqyWI0xIJaE4Imw';
+    var map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/streets-v11',
+        center: [-79.4512, 43.6568],
+        zoom: 0
+    });
+
+    map.addControl(
+        new MapboxGeocoder({
+            accessToken: mapboxgl.accessToken,
+            mapboxgl: mapboxgl
+        })
+    );
+</script>

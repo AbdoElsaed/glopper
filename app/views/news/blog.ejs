@@ -1,0 +1,136 @@
+<%- contentFor('title')%>
+<%= title %>
+
+<%- contentFor('breadcrumb_title')%>
+<%= title %>
+
+<%- contentFor('breadcrumb_item') %>
+<li class="breadcrumb-item">Blog</li>
+<li class="breadcrumb-item active"><%= title %></li>
+
+<%- contentFor('body') %>
+<!-- Container-fluid starts-->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="blog-single">
+                <div class="blog-box blog-details"><img class="img-fluid w-100" src="<%= blog.imgUrl %>" alt="blog-main">
+                    <div class="blog-details">
+                        <ul class="blog-social">
+                            <li class="digits">25 July 2018</li>
+                            <li><i class="icofont icofont-user"></i>Mark <span>Jecno </span></li>
+                            <li><i class="fa fa-eye"></i> <%= blog.views %> </li>
+                            <li class="digits"><i class="fa fa-tag"></i><%= blog.tag %></li>
+                            <li class="digits"><i class="fa fa-vcard"></i><%= blog.category %></li>
+                        </ul>
+                        <h2 style="margin-top: 30px;"> <%= blog.header %> </h2>
+                        <div class="single-blog-content-top">
+                            <% for(para of blog.contentTexts){ %>
+                                <p style="margin: 0;display: inline;color: #444;line-height: 2;letter-spacing: 1px;word-spacing: 1px;" > <%= para %> </p>
+                            <% } %>
+                        </div>
+                    </div>
+                </div>
+                <section class="comment-box">
+                    <h4>Comment</h4>
+                    <hr>
+                    <ul>
+                        <li>
+                            <div class="media align-self-center"><img class="align-self-center" src="<%= global.url %>assets/images/blog/comment.jpg" alt="Generic placeholder image">
+                                <div class="media-body">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <h6 class="mt-0">Jolio Mark<span> ( Designer )</span></h6>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <ul class="comment-social float-left float-md-right">
+                                                <li class="digits"><i class="icofont icofont-thumbs-up"></i>02 Hits</li>
+                                                <li class="digits"><i class="icofont icofont-ui-chat"></i>598 Comments</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <ul>
+                                <li>
+                                    <div class="media"><img class="align-self-center" src="<%= global.url %>assets/images/blog/9.jpg" alt="Generic placeholder image">
+                                        <div class="media-body">
+                                            <div class="row">
+                                                <div class="col-xl-12">
+                                                    <h6 class="mt-0">Jolio Mark<span> ( Designer )</span></h6>
+                                                </div>
+                                            </div>
+                                            <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.</p>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <div class="media"><img class="align-self-center" src="<%= global.url %>assets/images/blog/4.jpg" alt="Generic placeholder image">
+                                <div class="media-body">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <h6 class="mt-0">Jolio Mark<span> ( Designer )</span></h6>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <ul class="comment-social float-left float-md-right">
+                                                <li class="digits"><i class="icofont icofont-thumbs-up"></i>02 Hits</li>
+                                                <li class="digits"><i class="icofont icofont-ui-chat"></i>598 Comments</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="media"><img class="align-self-center" src="<%= global.url %>assets/images/blog/12.png" alt="Generic placeholder image">
+                                <div class="media-body">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <h6 class="mt-0">Jolio Mark<span> ( Designer )</span></h6>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <ul class="comment-social float-left float-md-right">
+                                                <li class="digits"><i class="icofont icofont-thumbs-up"></i>02 Hits</li>
+                                                <li class="digits"><i class="icofont icofont-ui-chat"></i>598 Comments</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="media"><img class="align-self-center" src="<%= global.url %>assets/images/blog/14.png" alt="Generic placeholder image">
+                                <div class="media-body">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <h6 class="mt-0">Jolio Mark<span> ( Designer )</span></h6>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <ul class="comment-social float-left float-md-right">
+                                                <li class="digits"><i class="icofont icofont-thumbs-up"></i>02 Hits</li>
+                                                <li class="digits"><i class="icofont icofont-ui-chat"></i>598 Comments</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.</p>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Container-fluid Ends-->
+
+
+
+<script src="/assets/js/tooltip-init.js"></script>
