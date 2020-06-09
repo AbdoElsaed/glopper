@@ -66,15 +66,15 @@
                 </li>
                 <li><a href="#"><i class="right_side_toggle" data-feather="message-circle"></i><span class="dot"></span></a></li>
                 <li class="onhover-dropdown">
-                    <div class="media align-items-center"><img class="align-self-center pull-right img-50 rounded-circle" src="<%= global.url %>assets/images/dashboard/user.png" alt="header-user">
+                    <div class="media align-items-center"><img class="align-self-center pull-right img-50 rounded-circle" src="<%= global.url %>assets/images/user/anon2.jpg" alt="header-user">
                         <div class="dotted-animation"><span class="animate-circle"></span><span class="main-circle"></span></div>
                     </div>
                     <ul class="profile-dropdown onhover-show-div p-20">
-                        <li><a href="#"><i data-feather="user"></i>                                    Edit Profile</a></li>
-                        <li><a href="#"><i data-feather="mail"></i>                                    Inbox</a></li>
-                        <li><a href="#"><i data-feather="lock"></i>                                    Lock Screen</a></li>
-                        <li><a href="#"><i data-feather="settings"></i>                                    Settings</a></li>
-                        <li><a href="#"><i data-feather="log-out"></i>                                    Logout</a></li>
+                        <li><a href="#"><i data-feather="user"></i> Edit Profile</a></li>
+                        <li><a href="#"><i data-feather="settings"></i>  Settings</a></li>
+                        <li></li>
+                        <li id="logInLink" style="display: none;" ><a  href="/login"><i data-feather="log-in"></i> Login</a></li>
+                        <li><a id="logOutLink" onclick="logOutCurrentUser()" href="#"><i data-feather="log-out"></i> Logout</a></li>
                     </ul>
                 </li>
             </ul>
@@ -96,3 +96,34 @@
     </div>
 </div>
 <!-- Page Header Ends   -->
+
+
+<script>
+
+    // window.addEventListener("DOMContentLoaded", () => {
+    //     firebase.auth().onAuthStateChanged(function (user) {
+    //             if (user) {
+    //                 document.getElementById('logOutLink').textContent = 'login';
+    //                 document.getElementById('logOutLink').href = '/login';
+    
+    //             }
+    //     });
+    // })
+
+
+        
+function logOutCurrentUser(){
+    firebase.auth().signOut().then(function() {
+        console.log('sign out successfully')
+        window.location.href = '/login';
+    }).catch(function(error) {
+        // An error happened.
+        console.log('error when sign out')
+    });
+
+}
+
+
+
+
+</script>

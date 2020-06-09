@@ -7,14 +7,34 @@ const logger = require('morgan');
 const session = require('express-session');
 const bodyParser = require('body-parser');
 const flash = require('connect-flash');
-
+const admin = require("firebase-admin");
 
 const app = express();
+
+
+
+const serviceAccount = require("./serviceAccountKey.json");
+
+// admin.initializeApp({
+  //   credential: admin.credential.cert(serviceAccount),
+//   databaseURL: "https://glopper-f830f.firebaseio.com"
+// });
+
 
 
 // Global Veriable
 global.url = 'http://localhost:3000/';
 console.log(`nodesj express listening on port ${global.url}`);
+
+
+app.get('/login', (req, res) => {
+  res.render('auth/login')
+})
+
+
+app.get('/signup', (req, res) => {
+  res.render('auth/signup')
+})
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -24,8 +44,8 @@ const map = require('./routes/map');
 const news = require('./routes/news');
 
 
-app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, '/public')));
 app.use(cookieParser('GlopperSecret'));
 app.use(logger('dev'));

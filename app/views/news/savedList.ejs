@@ -1,0 +1,55 @@
+
+
+
+<%- contentFor('title')%>
+<%= title %>
+
+<%- contentFor('breadcrumb_title')%>
+<%= title %>
+
+<%- contentFor('breadcrumb_item') %>
+<li class="breadcrumb-item">Glopper</li>
+<li class="breadcrumb-item active"><%= title %></li>
+
+<%- contentFor('body') %>
+<!-- Container-fluid starts-->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-9 sm-60">
+
+            <% if(logStatus){ %>
+                <h2>saved news go here</h2>
+            <% } else { %>
+                <h2> u should <a href="/login">login</a> to use this feature</h2>
+            <% } %>
+
+
+            <% for(blog of blogs){ %>
+                <div class="card">
+                    <div class="job-search row">
+                        <div class="col-3">
+                            <a href="/news/<%=blog.id%>"><img style="margin:20px 0px 20px 20px; width: 150px;height: 150px;"  src="<%= blog.imgUrl %>" alt=""></a>
+                        </div>
+                        <div class="card-body col-8">
+                            <div class="media">
+                                <div class="media-body">
+                                    <h6 class="f-w-600"><a href="/news/<%=blog.id%>"> <%= blog.header %> </a></h6>
+                                    <p> <i class="fa fa-tag"></i> <%= blog.tag %> </p>
+                                </div>
+                            </div>
+                            <p style="margin-top: 10px;"> <%= blog.summary %> </p>
+                            
+                        </div>
+                    </div>
+                </div>
+            <% } %>
+
+            
+        
+        </div>
+    </div>
+</div>
+<!-- Container-fluid Ends-->
+
+
+<script src="<%= global.url %>assets/js/tooltip-init.js"></script>

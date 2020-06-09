@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="endless admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
+    <meta name="keywords" content="admin template, endless admin template, dashboard template, flat admin template, responsive admin template, web app">
+    <meta name="author" content="pixelstrap">
+    <link rel="icon" href="<%= global.url %>assets/images/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="<%= global.url %>assets/images/favicon.png" type="image/x-icon">
+    <title>Glopper - Login</title>
+    <!-- Google font-->
+    <link href="https://fonts.googleapis.com/css?family=Work+Sans:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <!-- Font Awesome-->
+    <link rel="stylesheet" type="text/css" href="<%= global.url %>assets/css/fontawesome.css">
+    <!-- ico-font-->
+    <link rel="stylesheet" type="text/css" href="<%= global.url %>assets/css/icofont.css">
+    <!-- Themify icon-->
+    <link rel="stylesheet" type="text/css" href="<%= global.url %>assets/css/themify.css">
+    <!-- Flag icon-->
+    <link rel="stylesheet" type="text/css" href="<%= global.url %>assets/css/flag-icon.css">
+    <!-- Feather icon-->
+    <link rel="stylesheet" type="text/css" href="<%= global.url %>assets/css/feather-icon.css">
+    <!-- Plugins css start-->
+    <!-- Plugins css Ends-->
+    <!-- Bootstrap css-->
+    <link rel="stylesheet" type="text/css" href="<%= global.url %>assets/css/bootstrap.css">
+    <!-- App css-->
+    <link rel="stylesheet" type="text/css" href="<%= global.url %>assets/css/style.css">
+    <link id="color" rel="stylesheet" href="<%= global.url %>assets/css/light-1.css" media="screen">
+    <!-- Responsive css-->
+    <link rel="stylesheet" type="text/css" href="<%= global.url %>assets/css/responsive.css">
+    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-app.js" defer ></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-auth.js" defer ></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js" defer ></script>
+    <style>
+      #logo-text {
+          color: rgb(19, 139, 209);
+          font-size: 30px;
+          font-weight: 500;
+          margin-left: 50px;
+          font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+          text-shadow: 1px 3px 5px rgb(167, 206, 241);
+          text-transform: uppercase;
+          letter-spacing: 0;
+      }
+    </style>
+</head>
+<body>
+<!-- Loader starts-->
+<div class="loader-wrapper">
+    <div class="loader bg-white">
+        <div class="whirly-loader"> </div>
+    </div>
+</div>
+<!-- Loader ends-->
+<!-- page-wrapper Start-->
+<div class="page-wrapper">
+    <div class="container-fluid p-0">
+        <!-- login page start-->
+        <div class="authentication-main">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="auth-innerright">
+                        <div class="authentication-box">
+                            <div class="text-center"><a href="/"> <img style="width: 150px;" src="/assets/images/favicon.png" alt=""> </a></div>
+                            <div class="card mt-4">
+                                <div class="card-body">
+                                    <div class="text-center">
+                                        <h4>LOGIN</h4>
+                                        <h6>Enter your Username and Password </h6>
+                                    </div>
+                                    <form id="loginForm">
+                                        <div class="form-group">
+                                            <label class="col-form-label pt-0">Email</label>
+                                            <input name="login" class="form-control" type="email" required="">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-form-label">Password</label>
+                                            <input name="password" class="form-control" type="password" required="">
+                                        </div>
+
+                                        <div class="form-row">
+                                          <div class="col-sm-4">
+                                              <button class="btn btn-primary" type="submit">Log IN</button>
+                                          </div>
+                                          <div class="col-sm-8">
+                                              <div class="text-left mt-2 m-l-20">No Account! <a class="btn-link text-capitalize" href="/signup">sign up</a></div>
+                                          </div>
+                                        </div>
+
+                                        <div class="login-divider"></div>
+                                        <!-- <div class="social mt-3">
+                                            <div class="form-group btn-showcase d-flex">
+                                                <button class="btn social-btn btn-fb d-inline-block"> <i class="fa fa-facebook"></i></button>
+                                                <button class="btn social-btn btn-twitter d-inline-block"><i class="fa fa-google"></i></button>
+                                                <button class="btn social-btn btn-google d-inline-block"><i class="fa fa-twitter"></i></button>
+                                                <button class="btn social-btn btn-github d-inline-block"><i class="fa fa-github"></i></button>
+                                            </div>
+                                        </div> -->
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- login page end-->
+    </div>
+</div>
+<!-- latest jquery-->
+<script src="<%= global.url %>assets/js/jquery-3.2.1.min.js"></script>
+<!-- Bootstrap js-->
+<script src="<%= global.url %>assets/js/bootstrap/popper.min.js"></script>
+<script src="<%= global.url %>assets/js/bootstrap/bootstrap.js"></script>
+<!-- feather icon js-->
+<script src="<%= global.url %>assets/js/icons/feather-icon/feather.min.js"></script>
+<script src="<%= global.url %>assets/js/icons/feather-icon/feather-icon.js"></script>
+<!-- Sidebar jquery-->
+<script src="<%= global.url %>assets/js/sidebar-menu.js"></script>
+<!-- Plugins JS start-->
+<!-- Plugins JS Ends-->
+<!-- Theme js-->
+<script src="<%= global.url %>assets/js/script.js"></script>
+<!-- Plugin used-->
+<script>
+    window.addEventListener("DOMContentLoaded", () => {
+      const firebaseConfig = {
+        apiKey: "AIzaSyDFc1icImlHCrfRRqnCKfZuDBMRXVlCAbg",
+        authDomain: "glopper-f830f.firebaseapp.com",
+        databaseURL: "https://glopper-f830f.firebaseio.com",
+        projectId: "glopper-f830f",
+        storageBucket: "glopper-f830f.appspot.com",
+        messagingSenderId: "347992385603",
+        appId: "1:347992385603:web:f1597bde2e25ddb6380cf6",
+        measurementId: "G-JQBG5XX5XE"
+
+      };
+
+      firebase.initializeApp(firebaseConfig);
+
+
+      document
+        .getElementById("loginForm")
+        .addEventListener("submit", (event) => {
+          event.preventDefault();
+          const login = event.target.login.value;
+          const password = event.target.password.value;
+
+          firebase
+            .auth()
+            .signInWithEmailAndPassword(login, password)
+            .then(({ user }) => {
+              console.log('logged in successfully');
+              console.log(user)
+            })
+            .then(() => {
+              window.location.assign("/");
+            });
+          return false;
+        });
+    });
+  </script>
+</body>
+</html>

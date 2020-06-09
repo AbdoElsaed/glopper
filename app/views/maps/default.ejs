@@ -90,7 +90,7 @@ Home
         let json = await res.json();
         if(json.Response.View[0].Result[0].Location.Address.AdditionalData[0].value){
             countryName = json.Response.View[0].Result[0].Location.Address.AdditionalData[0].value;
-            window.location.href=`/news/local?country=${countryName}`
+            window.location.href=`/news/mapSearch?country=${countryName}`
         }
         if(json.Response.View[0].Result[0].Location.Address.AdditionalData[1].value){
             cityName = json.Response.View[0].Result[0].Location.Address.AdditionalData[1].value;

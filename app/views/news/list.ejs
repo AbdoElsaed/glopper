@@ -13,6 +13,19 @@
 
 <%- contentFor('body') %>
 <!-- Container-fluid starts-->
+
+<style>
+    .bookmarkIcon{
+        cursor: pointer;
+        position: absolute;
+        top: 28px;
+        right: -25px;
+    }
+    .savedNew{
+        fill: rgb(0, 174, 255);
+    }
+</style>
+
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-3 sm-40">
@@ -86,7 +99,7 @@
                         <div class="card-body col-8">
                             <div class="media">
                                 <div class="media-body">
-                                    <h6 class="f-w-600"><a href="/news/<%=blog.id%>"> <%= blog.header %> </a></h6>
+                                    <h6 class="f-w-600"><a href="/news/<%=blog.id%>"> <%= blog.header %> </a></h6> <i id="<%=blog.id%>" class="bookmarkIcon" title="save" data-feather="bookmark"></i>
                                     <p> <i class="fa fa-tag"></i> <%= blog.tag %> </p>
                                 </div>
                             </div>
@@ -117,3 +130,16 @@
 
 
 <script src="<%= global.url %>assets/js/tooltip-init.js"></script>
+
+<script>
+
+    const bookmarkIcons = document.querySelectorAll('.bookmarkIcon')
+
+    bookmarkIcons.forEach(bookmarkIcon => {
+        bookmarkIcon.addEventListener('click', function () {
+            bookmarkIcon.classList.toggle('savedNew')
+        })
+    })
+
+
+</script>

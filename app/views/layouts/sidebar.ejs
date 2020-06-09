@@ -1,16 +1,14 @@
 <style>
-    #logo-text{
+    #logo-text {
         color: rgb(19, 139, 209);
         font-size: 30px;
         font-weight: 500;
         margin-left: 50px;
-        font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
         text-shadow: 1px 3px 5px rgb(14, 108, 196);
         text-transform: uppercase;
         letter-spacing: 0;
     }
-
-
 </style>
 
 
@@ -22,17 +20,21 @@
     </div>
     <div class="sidebar custom-scrollbar">
         <div class="sidebar-user text-center">
-            <div><img class="img-60 rounded-circle" src="<%= global.url %>assets/images/user/1.jpg" alt="#">
-                <div class="profile-edit"><a href="edit-profile.html" target="_blank"><i data-feather="edit"></i></a></div>
+            <div><img class="img-60 rounded-circle" src="<%= global.url %>assets/images/user/anon2.jpg" alt="#">
+                <div class="profile-edit"><a href="edit-profile.html" target="_blank"><i data-feather="edit"></i></a>
+                </div>
             </div>
-            <h6 class="mt-3 f-14">User Name</h6>
-            <p>general manager.</p>
+            <h6 id="userName" class="mt-3 f-14">Anonymous User</h6>
+            <p id="userEmail"></p>
         </div>
         <ul class="sidebar-menu">
             <li><a class="sidebar-header" href="/"><i data-feather="home"></i><span> Map</span></a></li>
-            <li><a class="sidebar-header" href="/news/recent"><i data-feather="zap"></i><span> Recent News</span></a></li>
-            <li><a onclick="goToLocalNews()" id="localnewsLink" class="sidebar-header" href="#"><i data-feather="map-pin"></i><span> Local News</span></a></li>
-            <li><a class="sidebar-header" href="<%= global.url %>maintenance" target="_blank"><i data-feather="bookmark"></i><span> Saved News</span></a></li>
+            <li><a class="sidebar-header" href="/news/recent"><i data-feather="zap"></i><span> Recent News</span></a>
+            </li>
+            <li><a onclick="goToLocalNews()" id="localnewsLink" class="sidebar-header" href="#"><i
+                        data-feather="map-pin"></i><span> Local News</span></a></li>
+            <li><a class="sidebar-header" href="/news/saved"><i data-feather="bookmark"></i><span> Bookmarks </span></a>
+            </li>
         </ul>
     </div>
 </div>
@@ -55,49 +57,56 @@
             <div class="chat-box">
                 <div class="people-list friend-list">
                     <ul class="list">
-                        <li class="clearfix"><img class="rounded-circle user-image" src="<%= global.url %>assets/images/user/1.jpg" alt="">
+                        <li class="clearfix"><img class="rounded-circle user-image"
+                                src="<%= global.url %>assets/images/user/1.jpg" alt="">
                             <div class="status-circle online"></div>
                             <div class="about">
                                 <div class="name">Vincent Porter</div>
                                 <div class="status"> Online</div>
                             </div>
                         </li>
-                        <li class="clearfix"><img class="rounded-circle user-image" src="<%= global.url %>assets/images/user/2.png" alt="">
+                        <li class="clearfix"><img class="rounded-circle user-image"
+                                src="<%= global.url %>assets/images/user/2.png" alt="">
                             <div class="status-circle away"></div>
                             <div class="about">
                                 <div class="name">Ain Chavez</div>
                                 <div class="status"> 28 minutes ago</div>
                             </div>
                         </li>
-                        <li class="clearfix"><img class="rounded-circle user-image" src="<%= global.url %>assets/images/user/8.jpg" alt="">
+                        <li class="clearfix"><img class="rounded-circle user-image"
+                                src="<%= global.url %>assets/images/user/8.jpg" alt="">
                             <div class="status-circle online"></div>
                             <div class="about">
                                 <div class="name">Kori Thomas</div>
                                 <div class="status"> Online</div>
                             </div>
                         </li>
-                        <li class="clearfix"><img class="rounded-circle user-image" src="<%= global.url %>assets/images/user/4.jpg" alt="">
+                        <li class="clearfix"><img class="rounded-circle user-image"
+                                src="<%= global.url %>assets/images/user/4.jpg" alt="">
                             <div class="status-circle online"></div>
                             <div class="about">
                                 <div class="name">Erica Hughes</div>
                                 <div class="status"> Online</div>
                             </div>
                         </li>
-                        <li class="clearfix"><img class="rounded-circle user-image" src="<%= global.url %>assets/images/user/5.jpg" alt="">
+                        <li class="clearfix"><img class="rounded-circle user-image"
+                                src="<%= global.url %>assets/images/user/5.jpg" alt="">
                             <div class="status-circle offline"></div>
                             <div class="about">
                                 <div class="name">Ginger Johnston</div>
                                 <div class="status"> 2 minutes ago</div>
                             </div>
                         </li>
-                        <li class="clearfix"><img class="rounded-circle user-image" src="<%= global.url %>assets/images/user/6.jpg" alt="">
+                        <li class="clearfix"><img class="rounded-circle user-image"
+                                src="<%= global.url %>assets/images/user/6.jpg" alt="">
                             <div class="status-circle away"></div>
                             <div class="about">
                                 <div class="name">Prasanth Anand</div>
                                 <div class="status"> 2 hour ago</div>
                             </div>
                         </li>
-                        <li class="clearfix"><img class="rounded-circle user-image" src="<%= global.url %>assets/images/user/7.jpg" alt="">
+                        <li class="clearfix"><img class="rounded-circle user-image"
+                                src="<%= global.url %>assets/images/user/7.jpg" alt="">
                             <div class="status-circle online"></div>
                             <div class="about">
                                 <div class="name">Hileri Jecno</div>
@@ -115,11 +124,69 @@
 
 
 
+<script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-app.js" defer></script>
+<script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-auth.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js" defer></script>
+
 <script>
-    async function goToLocalNews(){
+    async function goToLocalNews() {
         let res = await fetch('http://ip-api.com/json');
         let data = await res.json();
         let country = data.country;
-        window.location.href=`/news/local?country=${country}`
+        window.location.href = `/news/local?country=${country}`
     }
+</script>
+
+<script>
+
+window.addEventListener("DOMContentLoaded", () => {
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyDFc1icImlHCrfRRqnCKfZuDBMRXVlCAbg",
+        authDomain: "glopper-f830f.firebaseapp.com",
+        databaseURL: "https://glopper-f830f.firebaseio.com",
+        projectId: "glopper-f830f",
+        storageBucket: "glopper-f830f.appspot.com",
+        messagingSenderId: "347992385603",
+        appId: "1:347992385603:web:f1597bde2e25ddb6380cf6",
+        measurementId: "G-JQBG5XX5XE"
+
+    };
+
+    firebase.initializeApp(firebaseConfig);
+
+    firebase.auth().onAuthStateChanged(function (user) {
+        if (user) {
+            
+            if(user.displayName){
+                document.getElementById('userName').innerHTML = user.displayName;
+            }
+            if(user.email){
+                document.getElementById('userEmail').innerHTML = user.email;
+            }
+            // // User is signed in.
+            // var displayName = user.displayName;
+            // var email = user.email;
+            // var emailVerified = user.emailVerified;
+            // var photoURL = user.photoURL;
+            // var isAnonymous = user.isAnonymous;
+            // var uid = user.uid;
+            // var providerData = user.providerData;
+        } else {
+            if(document.getElementById('logOutLink')){
+                document.getElementById('logOutLink').style.display = 'none';
+                document.getElementById('logInLink').style.display = 'block'
+            }
+            console.log('hhh')
+            // User is signed out.
+            // ...
+        }
+    });
+
+
+})
+
+    
+
+
 </script>
