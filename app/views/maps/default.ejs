@@ -5,8 +5,8 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css">
 <style>
     .map-container{
-        width: 600px;
-        height: 600px;
+        width: 550px;
+        height: 550px;
         position: relative;
         margin: 0 auto 20px;
  
@@ -19,10 +19,51 @@
         width: 100%;
         padding-top: 50px;
         box-shadow: 5px 5px 10px #DDD, -5px 5px 10px #DDD;
+        z-index: 300;
     }
     div.mapboxgl-ctrl-geocoder.mapboxgl-ctrl{
-        margin-right: 170px;
+        margin-right: 150px;
         margin-top: 40px;
+    }
+    #roundBorderCanvas{
+        width: 500px;
+        height: 500px;
+        position: absolute;
+        right: 0;
+        z-index: 100;
+        
+    }
+    #hhhh{
+        position: absolute;
+        right: -45px;
+        top: -20px;
+        width: 600px;
+        height: 600px;
+        border-right: 15px solid #777;
+        border-radius: 50%;
+        z-index: 140;
+        transform: rotateZ(10deg);
+    }
+    #topLineCanvas{
+        width: 25px;
+        height: 25px;
+        position: absolute;
+        z-index: 140;
+        right: 200px;
+        top: -17px;
+        border-right: 4px solid #777;
+        transform: rotateZ(10deg);
+
+    }
+    #bottomLineCanvas{
+        width: 26px;
+        height: 26px;
+        position: absolute;
+        z-index: 140;
+        left: 240px;
+        bottom: -25px;
+        border-right: 4px solid #777;
+        transform: rotateZ(10deg);
     }
 </style>
 
@@ -41,7 +82,10 @@ Home
 <!-- Container-fluid starts-->
 <div class="container-fluid">
     <div class="map-container">
+        <div id="topLineCanvas">  </div>
+        <div id="hhhh"></div>
         <div id="map" class="animate__animated animate__bounceInDown"></div>
+        <div id="bottomLineCanvas">  </div>
     </div>
 </div>
 <!-- Container-fluid Ends-->
@@ -101,10 +145,8 @@ Home
 
 </script>
 
-
+<!-- canvas script -->
 <script>
 
-
-    
 
 </script>
