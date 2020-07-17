@@ -21,10 +21,10 @@
     <div class="sidebar custom-scrollbar">
         <div class="sidebar-user text-center">
             <div><img class="img-60 rounded-circle" src="<%= global.url %>assets/images/user/anon2.jpg" alt="#">
-                <div class="profile-edit"><a href="edit-profile.html" target="_blank"><i data-feather="edit"></i></a>
+                <div id="editProfileLink" class="profile-edit"><a href="edit-profile.html" target="_blank"><i data-feather="edit"></i></a>
                 </div>
             </div>
-            <h6 id="userName" class="mt-3 f-14">Anonymous User</h6>
+            <h6 id="userName" class="mt-3 f-14"></h6>
             <p id="userEmail"></p>
         </div>
         <ul class="sidebar-menu">
@@ -33,14 +33,14 @@
             </li>
             <li><a onclick="goToLocalNews()" id="localnewsLink" class="sidebar-header" href="#"><i
                         data-feather="map-pin"></i><span> Local News</span></a></li>
-            <li><a class="sidebar-header" href="/news/saved"><i data-feather="bookmark"></i><span> Bookmarks </span></a>
+            <li><a onclick="goToSavedNews()" class="sidebar-header" href="#"><i data-feather="bookmark"></i><span> Bookmarks </span></a>
             </li>
         </ul>
     </div>
 </div>
 <!-- Page Sidebar Ends-->
 <!-- Right sidebar Start-->
-<div class="right-sidebar" id="right_side_bar">
+<!-- <div class="right-sidebar" id="right_side_bar">
     <div>
         <div class="container p-0">
             <div class="modal-header p-l-20 p-r-20">
@@ -118,8 +118,8 @@
             </div>
         </div>
     </div>
-</div>
-<!-- Right sidebar Ends-->
+</div> -->
+<!-- Right sidebar Ends -->
 
 
 
@@ -129,11 +129,24 @@
 <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js" defer></script>
 
 <script>
+
     async function goToLocalNews() {
         let res = await fetch('http://ip-api.com/json');
         let data = await res.json();
         let country = data.country;
         window.location.href = `/news/local?country=${country}`
+    }
+    function goToSavedNews(){
+
+        const user = firebase.auth().currentUser;
+        if(user != null){
+            const userId = user.uid;
+            console.log(user.uid)
+            window.location.href = `/news/saved?userid=${userId}`
+        } else {
+            window.location.href = `/news/saved/notloggedin`
+            console.log('not logged in')
+        }
     }
 </script>
 
@@ -155,6 +168,8 @@ window.addEventListener("DOMContentLoaded", () => {
 
     firebase.initializeApp(firebaseConfig);
 
+    
+
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
             
@@ -173,13 +188,13 @@ window.addEventListener("DOMContentLoaded", () => {
             // var uid = user.uid;
             // var providerData = user.providerData;
         } else {
+            document.getElementById('userName').innerHTML = 'Anonymous User';
+            document.getElementById('editProfileLink').style.display = 'none';
             if(document.getElementById('logOutLink')){
                 document.getElementById('logOutLink').style.display = 'none';
                 document.getElementById('logInLink').style.display = 'block'
             }
-            console.log('hhh')
             // User is signed out.
-            // ...
         }
     });
 

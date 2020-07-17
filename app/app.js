@@ -42,6 +42,7 @@ app.set('view engine', 'ejs');
 
 const map = require('./routes/map');
 const news = require('./routes/news');
+const covid = require('./routes/covid');
 
 
 app.use(bodyParser.json());
@@ -72,6 +73,7 @@ app.use((req, res, next) => {
 
 app.use('/', map);
 app.use('/news', news);
+app.use('/covid', covid);
 
 
 

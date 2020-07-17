@@ -1,0 +1,25 @@
+<%- contentFor('title')%>
+<%= title %>
+
+<%- contentFor('breadcrumb_title')%>
+<%= title %>
+
+<%- contentFor('breadcrumb_item') %>
+<li class="breadcrumb-item">Glopper</li>
+<li class="breadcrumb-item active"><%= title %></li>
+
+<%- contentFor('body') %>
+<!-- Container-fluid starts-->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-9 sm-60">
+
+                <h2> U should <a href="/login">login</a> to use this feature</h2>
+
+        </div>
+    </div>
+</div>
+<!-- Container-fluid Ends-->
+
+
+<script src="<%= global.url %>assets/js/tooltip-init.js"></script>

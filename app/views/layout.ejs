@@ -46,8 +46,9 @@
                             <div class="col">
                                 <div class="bookmark pull-right">
                                     <ul>
-                                        <li><a href="#" data-container="body" data-toggle="popover" data-placement="top" title="" data-original-title="Mail"><i data-feather="mail"></i></a></li>
-                                        <li><a href="#"><i class="bookmark-search" data-feather="bookmark"></i></a>
+                                        <li id="voiceSearchBtn"><a href="#" data-container="body" data-toggle="popover" data-placement="top" title="" data-original-title="Serach By Voice"><i data-feather="mic"></i></a></li>
+                                        <li><a href="#" data-container="body" data-toggle="modal" data-target="#exampleModalCenter" data-placement="top" title="" data-original-title="Subscribe"><i data-feather="mail"></i></a></li>
+                                        <li><a href="#" data-original-title="Search Bookmarks"><i class="bookmark-search"  data-feather="bookmark"></i></a>
                                             <form class="form-inline search-form">
                                                 <div class="form-group form-control-search">
                                                     <input name="searchTxt" type="text" placeholder="Search..">
@@ -55,6 +56,32 @@
                                             </form>
                                         </li>
                                     </ul>
+                                </div>
+                            </div>
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                    <h5 style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;" class="modal-title" id="exampleModalLongTitle">Get Daily News Based On Your Location.</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    </div>
+                                    <form method="" action="">
+                                        <div class="modal-body">
+                                            <div class="form-group">
+                                              <label for="recipient-name" class="col-form-label">Email:</label>
+                                              <input type="email" name='email' class="form-control" id="emailToSubscribe" placeholder="example@example.com" >
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-primary">Subscribe</button>
+                                        </div>
+                                    </form>
+
+                                </div>
                                 </div>
                             </div>
                             <!-- Bookmark Ends-->
@@ -69,6 +96,47 @@
         </div>
     </div>
     <%- include ('layouts/script') %>
+
+    <!-- voice recognition related -->
+    <script>
+
+        var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition
+        var SpeechGrammarList = SpeechGrammarList || webkitSpeechGrammarList
+        var SpeechRecognitionEvent = SpeechRecognitionEvent || webkitSpeechRecognitionEvent
+
+        var grammar = '#JSGF V1.0;'
+
+
+        var recognition = new SpeechRecognition();
+        var speechRecognitionList = new SpeechGrammarList();
+        speechRecognitionList.addFromString(grammar, 1);
+        recognition.grammars = speechRecognitionList;
+        recognition.lang = 'en-US';
+        recognition.interimResults = false;
+        recognition.maxAlternatives = 1;
+
+        document.querySelector('#voiceSearchBtn').addEventListener('click', function(){
+            recognition.start();
+        });
+
+        recognition.onresult = function(event) {
+            var last = event.results.length - 1;
+            var command = event.results[last][0].transcript;
+
+            alert(command);
+        };
+
+        recognition.onspeechend = function() {
+            recognition.stop();
+        };
+
+        recognition.onerror = function(event) {
+            alert('Error occurred in recognition: ' + event.error);
+        }        
+
+
+
+    </script>
 </body>
 
 </html>

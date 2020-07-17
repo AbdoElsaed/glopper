@@ -160,6 +160,9 @@
             })
             .then(() => {
               window.location.assign("/");
+            })
+            .catch(err => {
+                alert('error happens during log in process' + err.message)
             });
           return false;
         });

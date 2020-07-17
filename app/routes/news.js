@@ -50,9 +50,14 @@ router.get('/recent', async (req, res) => {
 
 router.get("/saved", function (req, res) {
     try{
+        const userId = req.query.userid;
+        console.log(userId);
         const sessionCookie = req.cookies.session || "";
   
         const savedNews = [];
+
+        return res.render('news/savedList', { title: 'Saved News', blogs: savedNews });
+
 
         // admin.auth().getUser(`pJo6Tx6oWOVB9q4inxnRmuXi9XB3`)
         //     .then(function(userRecord) {
@@ -63,19 +68,6 @@ router.get("/saved", function (req, res) {
         //         console.log('Error fetching user data:', error);
         //     });
 
-
-        admin
-          .auth()
-          .verifySessionCookie(sessionCookie, true /** checkRevoked */)
-          .then(() => {
-              console.log(admin.auth().currentUser)
-            return res.render('news/savedList', { title: 'Saved News', blogs: savedNews, logStatus: true });
-            // res.render("profile.html");
-          })
-          .catch((error) => {
-            return res.render('news/savedList', { title: 'Saved News', blogs: savedNews, logStatus: false });
-            // res.redirect("/login");
-          });
     }catch(err){
         console.log(err)
     }
@@ -83,6 +75,15 @@ router.get("/saved", function (req, res) {
 
     
 });
+
+router.get('/saved/notloggedin', (req, res) => {
+    try{
+        return res.render('news/notloggedin', { title: 'Saved News' });
+        
+    } catch(err){
+        console.log(err);
+    }
+})
 
 router.get('/:id', async (req, res) => {
     try{

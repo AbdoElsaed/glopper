@@ -163,7 +163,9 @@
           .then(() => {
             window.location.assign("/");
           })
-          updateDisplayName(displayName);
+          .then(() => {
+              updateDisplayName(displayName);
+          })
       });
 
 
