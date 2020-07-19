@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-const admin = require("firebase-admin");
+// const admin = require("firebase-admin");
 
 
 
@@ -10,6 +10,9 @@ const { getRecentnews } = require('../services/getNewsService');
 const { filterRecentNews } = require('../services/getNewsService');
 const { getSingleNew } = require('../services/getNewsService');
 const { getLocalNews } = require('../services/getNewsService');
+const { saveThisArticle } = require('../services/getNewsService');
+const { getUserSavedNews } = require('../services/getNewsService');
+const { removeThisNew } = require('../services/getNewsService');
 
 
 
@@ -48,33 +51,72 @@ router.get('/recent', async (req, res) => {
     }
 });
 
-router.get("/saved", function (req, res) {
+router.get("/saved", async function (req, res) {
     try{
         const userId = req.query.userid;
         console.log(userId);
-        const sessionCookie = req.cookies.session || "";
   
-        const savedNews = [];
+        const savedNews = await getUserSavedNews(userId);
 
         return res.render('news/savedList', { title: 'Saved News', blogs: savedNews });
-
-
-        // admin.auth().getUser(`pJo6Tx6oWOVB9q4inxnRmuXi9XB3`)
-        //     .then(function(userRecord) {
-        //         // See the UserRecord reference doc for the contents of userRecord.
-        //         console.log('Successfully fetched user data:', userRecord.toJSON());
-        //     })
-        //     .catch(function(error) {
-        //         console.log('Error fetching user data:', error);
-        //     });
 
     }catch(err){
         console.log(err)
     }
-    
-
-    
+     
 });
+
+router.get('/savedNews/search', async (req, res) => {
+    const searchTxt = req.query.searchTxt;
+    console.log(searchTxt);
+
+})
+
+router.get('/saveThisNew', async (req, res) => {
+
+    try{
+
+        const articleId = req.query.articleId;
+        const userId = req.query.userId;
+        console.log('article id: ', articleId )
+        console.log('user id: ', userId )
+
+        saveThisArticle(userId, articleId);
+
+
+    } catch(err){
+        console.log(err);
+    }
+
+})
+
+router.get('/removeThisNew', async (req, res) => {
+
+    try{
+
+        const articleId = req.query.articleId;
+        const userId = req.query.userId;
+
+        return removeThisNew(userId, articleId);
+
+
+    } catch(err){
+        console.log(err);
+    }
+
+})
+
+router.get('/deleteThisNew', async (req, res) => {
+
+    try{
+
+
+
+    } catch(err){
+        console.log(err);
+    }
+
+})
 
 router.get('/saved/notloggedin', (req, res) => {
     try{

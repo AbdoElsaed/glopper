@@ -72,4 +72,76 @@ const filterRecentNews = async (cats) => {
     return filteredRecentNews
 }
 
-module.exports = { getRecentnews, filterRecentNews, getSingleNew, getLocalNews };
+const saveThisArticle = async (userId, articleId) => {
+    admin.auth().getUser(userId)
+        .then(async function(userRecord) {
+            // See the UserRecord reference doc for the contents of userRecord.
+            // console.log('Successfully fetched user data:', userRecord.toJSON());
+            let userInfo = userRecord.toJSON();
+
+            let articleRes = await fetch(`https://glopper-f830f.firebaseio.com/news/${articleId}.json`);
+            let articleData = await articleRes.json();
+
+            console.log(articleData);
+
+            saveThis(userInfo, articleId, articleData);
+
+        })
+        .catch(function(error) {
+            console.log('Error fetching user data:', error);
+        });
+}
+
+const saveThis = async (userInfo, articleId, articleData) => {
+
+    try{
+
+        const dbRef = admin.database();
+        const savedNewsRef = dbRef.ref(`savedNews/${userInfo.uid}/${articleId}`);
+        savedNewsRef.set({
+            userId: userInfo.uid,
+            ...articleData
+        })
+
+
+    } catch(err){
+        console.log(err)
+    }
+
+}
+
+const getUserSavedNews = async userId => {
+    try{
+
+        let savedNewsArr = [];
+
+        let savedDataRes = await fetch(`https://glopper-f830f.firebaseio.com/savedNews/${userId}.json`);
+        let savedNews = await savedDataRes.json();
+
+        // let finalSavedNews = Object.values(savedNews);
+
+        for(obj in savedNews){
+            savedNews[obj]['id']=obj;
+            savedNewsArr.push(savedNews[obj]);
+        }
+
+        return savedNewsArr;
+
+    }catch(err){
+        console.log(err)
+    }
+}
+
+const removeThisNew = async (userId, articleId) => {
+    try{
+
+        let removeNewRef = dbRef.ref(`savedNews/${userId}/${articleId}`);
+        removeNewRef.remove();
+
+
+    } catch(err) {
+        console.log(err);
+    }
+}
+
+module.exports = { getRecentnews, filterRecentNews, getSingleNew, getLocalNews, saveThisArticle, getUserSavedNews, removeThisNew };

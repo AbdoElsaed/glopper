@@ -13,15 +13,22 @@
 
 <%- contentFor('body') %>
 <!-- Container-fluid starts-->
+
+<style>
+    .xIcon{
+        cursor: pointer;
+        position: absolute;
+        top: 28px;
+        right: -25px;
+    }
+</style>
+
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-9 sm-60">
 
-                <h2>saved news go here</h2>
-
-
             <% for(blog of blogs){ %>
-                <div class="card">
+                <div class="card" id="saved-<%=blog.id%>">
                     <div class="job-search row">
                         <div class="col-3">
                             <a href="/news/<%=blog.id%>"><img style="margin:20px 0px 20px 20px; width: 150px;height: 150px;"  src="<%= blog.imgUrl %>" alt=""></a>
@@ -29,7 +36,7 @@
                         <div class="card-body col-8">
                             <div class="media">
                                 <div class="media-body">
-                                    <h6 class="f-w-600"><a href="/news/<%=blog.id%>"> <%= blog.header %> </a></h6>
+                                    <h6 class="f-w-600"><a href="/news/<%=blog.id%>"> <%= blog.header %> </a></h6> <i id="<%=blog.id%>" class="xIcon" title="save" data-feather="x"></i>
                                     <p> <i class="fa fa-tag"></i> <%= blog.tag %> </p>
                                 </div>
                             </div>
@@ -49,3 +56,24 @@
 
 
 <script src="<%= global.url %>assets/js/tooltip-init.js"></script>
+
+
+<script>
+
+    const xIcons = document.querySelectorAll('.xIcon');
+
+    xIcons.forEach(xIcon => {
+        xIcon.addEventListener('click', async function(){
+            const user = firebase.auth().currentUser;
+            let userId;
+            if(user != null){
+                userId = user.uid;
+            }  
+            let cardToRemove = document.getElementById(`saved-${this.id}`);
+            cardToRemove.style.display = 'none';
+            await fetch(`/news/removeThisNew?articleId=${this.id}&userId=${userId}`)
+        })
+    })
+
+
+</script>

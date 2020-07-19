@@ -49,7 +49,7 @@
                                         <li id="voiceSearchBtn"><a href="#" data-container="body" data-toggle="popover" data-placement="top" title="" data-original-title="Serach By Voice"><i data-feather="mic"></i></a></li>
                                         <li><a href="#" data-container="body" data-toggle="modal" data-target="#exampleModalCenter" data-placement="top" title="" data-original-title="Subscribe"><i data-feather="mail"></i></a></li>
                                         <li><a href="#" data-original-title="Search Bookmarks"><i class="bookmark-search"  data-feather="bookmark"></i></a>
-                                            <form class="form-inline search-form">
+                                            <form action="/savedNews/search" method="GET" class="form-inline search-form">
                                                 <div class="form-group form-control-search">
                                                     <input name="searchTxt" type="text" placeholder="Search..">
                                                 </div>
@@ -68,6 +68,9 @@
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                     </div>
+                                    <div style="display: none;" id="subscribeAlert" class="alert alert-info" role="alert">
+                                        <h6>Congrats, You Subscribed Successfully :D</h6>
+                                    </div>
                                     <form method="" action="">
                                         <div class="modal-body">
                                             <div class="form-group">
@@ -76,8 +79,8 @@
                                             </div>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                            <button type="submit" class="btn btn-primary">Subscribe</button>
+                                            <button id="closeSubscribeBtn" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <button id="subscribeBtn" type="submit" class="btn btn-primary">Subscribe</button>
                                         </div>
                                     </form>
 
@@ -123,7 +126,8 @@
             var last = event.results.length - 1;
             var command = event.results[last][0].transcript;
 
-            alert(command);
+            // alert(command);
+            window.location.href = `/news/local?country=${command}`;
         };
 
         recognition.onspeechend = function() {
@@ -136,6 +140,19 @@
 
 
 
+    </script>
+
+    <script>
+        document.getElementById('subscribeBtn').addEventListener('click', function(e){
+            e.preventDefault();
+
+            document.getElementById('subscribeAlert').style.display = 'block';
+            setTimeout(() => {
+                document.getElementById('subscribeAlert').style.display = 'none';
+                document.getElementById('closeSubscribeBtn').click();
+            }, 1200);
+
+        })
     </script>
 </body>
 
